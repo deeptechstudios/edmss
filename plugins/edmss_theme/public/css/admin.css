@@ -18,7 +18,7 @@ a {
   outline: none;
 }
 a:hover {
-  color: #5D5D5D;
+  color: #cecece;
   text-decoration: none;
   outline: none;
 }
@@ -81,7 +81,7 @@ textarea:focus {
 /* ALERTS */
 .alert-info {
   background: #4c4c4c;
-  color: #5D5D5D;
+  color: #ffffff;
   border: none;
 }
 .error_success {
@@ -456,4 +456,12 @@ tr {
   width: 100%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+/* MISC OVERRIDES */
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #4c4c4c;
+}
+.list-group-item {
+  background-color: #595959;
 }

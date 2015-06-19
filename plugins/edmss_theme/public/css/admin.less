@@ -4,6 +4,7 @@
 @color_menu: #595959;
 @color_font_light: #FFFFFF;
 @color_font_dark: @color_background;
+@color_light_2: #cecece;
 
 html, body
 {
@@ -32,7 +33,7 @@ a
 
 a:hover
 {
-  color: #5D5D5D;
+  color: @color_light_2;
   text-decoration: none;
   outline: none;
 }
@@ -119,7 +120,7 @@ form .error
 .alert-info
 {
   background: @color_background;
-  color: #5D5D5D;
+  color: @color_font_light;
   border: none;
 }
 
@@ -615,4 +616,13 @@ tr
   width: 100%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+
+/* MISC OVERRIDES */
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: @color_font_dark;
+}
+
+.list-group-item {
+  background-color: @color_menu;
 }
