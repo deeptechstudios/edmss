@@ -7,8 +7,8 @@ public/bower_components/
 log/
 out
 #plugins/*
-plugins/mixcloud-pencilblue
-plugins/mixcloud-pencilblue/**
+plugins/mixcloud-widget
+plugins/mixcloud-widget/**
 !plugins/pencilblue
 !plugins/pencilblue/**
 !plugins/ga
