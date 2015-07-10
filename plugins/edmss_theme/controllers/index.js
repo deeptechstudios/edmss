@@ -47,6 +47,10 @@ module.exports = function IndexModule(pb) {
 						}
 					}
 					self.ts.registerLocal('navigation', new pb.TemplateValue(navigation, false));
+                    self.ts.registerLocal('radio_sets', function(flag, cb) {
+
+
+                    });
 
 					self.ts.load('index', function (err, template) {
 						if (util.isError(err)) {

@@ -10,7 +10,7 @@
  */
 
 module.exports = {
-    "siteName": "My PencilBlue Site",
+    "siteName": "EDM Sound System",
     "siteRoot": "http://127.0.0.1:8080",
     "sitePort": 8080,
     "logging": {
@@ -21,7 +21,7 @@ module.exports = {
         "servers": [
           "127.0.0.1:27017"
         ],
-        "name": "pencilblue",
+        "name": "pencil_blue",
         "writeConcern": 1
     },
     "cache": {
