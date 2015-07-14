@@ -46,13 +46,36 @@ module.exports = function IndexModule(pb) {
 								break;
 						}
 					}
+
 					self.ts.registerLocal('navigation', new pb.TemplateValue(navigation, false));
-                    self.ts.registerLocal('radio_sets', function(flag, cb) {
+                    self.ts.registerLocal('account_buttons', new pb.TemplateValue(accountButtons, false));
+                    /*self.ts.registerLocal('radio_sets', function(flag, cb) {
+                        var objService = new pb.CustomObjectService();
+                        objService.loadTypeByName('Mix', function(err, customType) {
+                            objService.findByType(customType, function(err, mixes) {
+                                mixes.forEach(function(mix) {
+                                    self.renderMix(mix, cb);
+                                });
+                            });
+                        });
+                    });*/
 
-
+                    self.ts.registerLocal('angular', function(flag, cb) {
+                        var objects = {
+                            trustHTML: 'function(string){return $sce.trustAsHtml(string);}'
+                        };
+                        var angularData = pb.ClientJs.getAngularController(objects, ['ngSanitize']);
+                        cb(null, angularData);
                     });
 
-					self.ts.load('index', function (err, template) {
+                    var now = new Date();
+                    var angularObjects = pb.ClientJs.getAngularObjects({
+                        streaming: ((now.getDay() == 6 && (now.getHours() >= 21)) ||
+                                    (now.getDay() == 0 && (now.getHours() == 0 && now.getMinutes() <= 2)))
+                    });
+                    self.ts.registerLocal('angular_objects', new pb.TemplateValue(angularObjects, false));
+
+                    self.ts.load('index', function (err, template) {
 						if (util.isError(err)) {
 							content.content = '';
 						}
@@ -66,6 +89,17 @@ module.exports = function IndexModule(pb) {
 			});
 		});
 	};
+
+    Index.prototype.compileMix = function(mix, cb) {
+        var self = this;
+
+        var ats = this.ts.getChildInstance();
+        self.ts.reprocess = false;
+        ats.registerLocal('mix_id', mix[pb.DAO.getIdField()].toString());
+
+        ats.load('elements/mix', cb);
+
+    };
 
 	Index.getRoutes = function(cb) {
 		var routes = [

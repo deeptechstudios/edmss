@@ -1,11 +1,14 @@
 ^tmp_head^
 <div class="container-fluid">
-
-    <div id="articles" class="row">
-        <p>THIS IS ZOMBOCOM!!</p>
-        ^articles^
+    <div id="player" class="row" ng-if="streaming">
+        <h2>Streaming Live!</h2>
+        <iframe src="http://wrek.org/player"></iframe>
+    </div>
+    <div id="radio_sets" class="row">
+        ^radio_sets^
     </div>
 </div>
 ^infinite_scroll^
 ^angular^
 ^tmp_footer^
+^tmp_angular=index^

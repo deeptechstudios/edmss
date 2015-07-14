@@ -1,7 +1,46 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic);
 
-@color_bg:      #3F3F3F;
+@color_head_bg:   #252525;
+@color_head_fg:   #C7C7C7;
+@color_acct_btns: #CCCCCC;
+
 @color_link:    #01AAD5;
+@color_body_bg: #555555;
+@color_body_fg: #D5D5D5;
+
+/* EDMSS styles */
+
+nav#account_nav {
+  background-color: @color_head_bg;
+}
+
+li.account_button a {
+  color: @color_acct_btns !important;
+}
+
+li.account_button a:hover {
+  color: white !important;
+}
+
+div#nav_desktop {
+  background-color: @color_head_bg;
+}
+
+/* Active nav item */
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  color: white;
+  background-color: @color_body_bg;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: @color_head_fg;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: white;
+}
+
+/* Pencilblue styles (lessified) */
 
 *
 {
@@ -12,6 +51,8 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  background-color: @color_body_bg;
+  color: @color_body_fg;
 }
 
 a
@@ -43,7 +84,7 @@ form .error
 
 .navbar
 {
-  background-color: #FFFFFF;
+  background-color: @color_head_bg;
   border: none;
 }
 
