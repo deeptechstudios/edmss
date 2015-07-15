@@ -17,13 +17,49 @@ div#nav_desktop {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: white;
-  background-color: #555555;
+  background-color: #252525;
 }
 .navbar-default .navbar-nav > li > a {
   color: #c7c7c7;
 }
 .navbar-default .navbar-nav > li > a:hover {
   color: white;
+}
+div#radio_sets {
+  background-color: #24d8b1;
+  color: #252525;
+  height: 300px;
+}
+div#player {
+  background-color: #d14377;
+  align-content: center;
+}
+/* Mixes */
+div.mix {
+  margin: 5px auto;
+  width: 700px;
+  height: 200px;
+  background-color: #555555;
+  color: #d5d5d5;
+  overflow: hidden;
+}
+div.mix h1 {
+  font-size: 1.5em;
+}
+div.mix h2 {
+  font-size: 1.3em;
+}
+div.mix h3 {
+  font-size: 1em;
+  font-style: italic;
+}
+div.mix .col-md-4 {
+  background-color: #d5d5d5;
+  height: inherit;
+}
+div.mix iframe {
+  width: 100%;
+  height: 100%;
 }
 /* Pencilblue styles (lessified) */
 * {
@@ -37,7 +73,7 @@ body {
   color: #d5d5d5;
 }
 a {
-  color: #01aad5;
+  color: #01bbff;
   text-decoration: none;
   outline: none;
 }

@@ -16,6 +16,7 @@
             ^navigation^
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-cloak>
+            <li style="color: red; font-size: 24pt;" ng-if="streaming">LIVE</li>
             ^account_buttons^
         </ul>
     </div>
@@ -23,7 +24,7 @@
 <div id="nav_desktop" class="row">
     <div class="col-md-8 col-md-offset-2">
         <a href="^site_root^">
-            <img src="^site_logo^" style="max-width: 100%" ng-cloak></img>
+            <img src="^site_logo^" style="max-width: 100%" ng-cloak/>
         </a>
     </div>
     <div class="col-md-8 col-md-offset-2">

@@ -2,6 +2,7 @@
  * Created by Daniel on 6/11/2015.
  */
 
+var async = require('async');
 
 module.exports = function IndexModule(pb) {
 
@@ -49,16 +50,25 @@ module.exports = function IndexModule(pb) {
 
 					self.ts.registerLocal('navigation', new pb.TemplateValue(navigation, false));
                     self.ts.registerLocal('account_buttons', new pb.TemplateValue(accountButtons, false));
-                    /*self.ts.registerLocal('radio_sets', function(flag, cb) {
+                    self.ts.registerLocal('radio_sets', function(flag, cb) {
                         var objService = new pb.CustomObjectService();
                         objService.loadTypeByName('Mix', function(err, customType) {
                             objService.findByType(customType, function(err, mixes) {
-                                mixes.forEach(function(mix) {
-                                    self.renderMix(mix, cb);
+                                var tasks = util.getTasks(mixes, function(mixes, i) {
+                                    return function(callback) {
+                                        if (i >= 5) {//TODO, limit mixes in query, not through hackery
+                                            callback(null, '');
+                                            return;
+                                        }
+                                        self.renderMix(mixes[i], i, callback);
+                                    };
+                                });
+                                async.parallel(tasks, function(err, result) {
+                                    cb(err, new pb.TemplateValue(result.join(''), false));
                                 });
                             });
                         });
-                    });*/
+                    });
 
                     self.ts.registerLocal('angular', function(flag, cb) {
                         var objects = {
@@ -90,15 +100,40 @@ module.exports = function IndexModule(pb) {
 		});
 	};
 
-    Index.prototype.compileMix = function(mix, cb) {
+    Index.prototype.renderMix = function(mix, index, callback) {
         var self = this;
 
         var ats = this.ts.getChildInstance();
         self.ts.reprocess = false;
         ats.registerLocal('mix_id', mix[pb.DAO.getIdField()].toString());
+        ats.registerLocal('mix_index', index);
+        ats.registerLocal('mix_name', mix['name']);
+        ats.registerLocal('mix_artist', mix['Artist']);
+        ats.registerLocal('mix_date', function(flag, cb) {
+            var date = mix['Date'];
+            var month = ['January','Feburary','March','April','May','June',
+                'July','August','September','October','November','December'][date.getMonth()];
+            var day = date.getDay();
+            var year = date.getFullYear();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            cb(null, month + " " + day + ", " + year + " " + hours + ":" +
+                (minutes > 9 ? minutes : "0" + minutes) +
+                (hours < 12 ? "AM" : "PM")
+            );
+        });
+        ats.registerLocal('mix_description', "This mix has no description.");
+        ats.registerLocal('mix_media', function(flag, cb) {
+            var mediaService = new pb.MediaService();
+            mediaService.renderById(mix['Media'], function(err, content) {
+                cb(null, content);
+            });
+        });
+        /*ats.registerLocal('mix_genres', function(flag, cb) {
 
-        ats.load('elements/mix', cb);
+        });*/
 
+        ats.load('elements/mix', callback);
     };
 
 	Index.getRoutes = function(cb) {

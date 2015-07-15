@@ -4,9 +4,11 @@
 @color_head_fg:   #C7C7C7;
 @color_acct_btns: #CCCCCC;
 
-@color_link:    #01AAD5;
+@color_link:    #01BBFF;
 @color_body_bg: #555555;
 @color_body_fg: #D5D5D5;
+@color_body_2:  #D14377;
+@color_body_3:  #24D8B1;
 
 /* EDMSS styles */
 
@@ -29,7 +31,7 @@ div#nav_desktop {
 /* Active nav item */
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
   color: white;
-  background-color: @color_body_bg;
+  background-color: @color_head_bg;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -39,6 +41,60 @@ div#nav_desktop {
 .navbar-default .navbar-nav>li>a:hover {
   color: white;
 }
+
+
+div#radio_sets {
+  background-color: @color_body_3;
+  color: @color_head_bg;
+  height: 300px;
+}
+
+div#player {
+  background-color: @color_body_2;
+  align-content: center;
+}
+
+
+/* Mixes */
+
+div.mix {
+  margin: 5px auto;
+  width: 700px;
+  height: 200px;
+  background-color: @color_body_bg;
+  color: @color_body_fg;
+  overflow: hidden;
+}
+
+div.mix h1 {
+  font-size: 1.5em;
+}
+
+div.mix h2 {
+  font-size: 1.3em;
+}
+
+div.mix h3 {
+  font-size: 1em;
+  font-style: italic;
+}
+
+div.mix .col-md-4 {
+  background-color: @color_body_fg;
+  height: inherit;
+}
+
+div.mix iframe {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+
+
 
 /* Pencilblue styles (lessified) */
 
