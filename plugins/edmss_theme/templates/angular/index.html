@@ -1,8 +1,60 @@
 <script type="text/javascript">
     angular.module('pencilblueApp', [])
     .controller('PencilBlueController', function($scope) {
-        ^angular_objects^
+        ^angular_objects^;
 
+        $scope.play = function() {
+            var track = $scope.playlist[$scope.currTrack];
+            var audio = $('audio');
+            var audioSrc = $('audio source');
 
+            if ($scope.currTrack != $scope.lastTrack) {
+                audioSrc.attr('src', track.src);
+                audioSrc.attr('type', track.type);
+                //audio.src = track.src;
+                $scope.albumSrc = track.art;
+            }
+
+            $scope.loading = true;
+            $scope.lastTrack = $scope.currTrack;
+            audio.trigger('load');
+            audio.trigger('play');
+        };
+
+        $scope.pause = function() {
+            var audio = $('audio');
+            audio.trigger('pause');
+        };
+
+        $scope.playpause = function() {
+            if ($scope.playing) {
+                $scope.pause();
+            } else {
+                $scope.play();
+            }
+        };
+
+        $scope.prevTrack = function() {
+            $scope.currTrack -= 1;
+            $scope.play();
+        };
+
+        $scope.nextTrack = function() {
+            $scope.currTrack += 1;
+            $scope.play();
+        };
+
+        $('audio').bind('playing', function() {
+            $scope.loading = false;
+            $scope.playing = true;
+            $scope.$apply();
+        });
+
+        $('audio').bind('pause', function() {
+            $scope.playing = false;
+            $scope.$apply();
+        });
+
+        $scope.play();
     });
 </script>

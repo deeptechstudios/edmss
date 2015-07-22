@@ -1,11 +1,55 @@
 ^tmp_head^
 <div class="container-fluid">
-    <div id="player" class="row" ng-if="streaming">
-        <iframe src="http://wrek.org/player"></iframe>
+    <!--<div id="player" class="row" ng-if="streaming">
+        <div class="col-md-4 col-md-offset-4" style="text-align: center;">
+            <h4>Live on WREK</h4>
+            <!--<em>In The Mix: ^live_dj^</em>
+            <br/>
+            <audio controls autoplay>
+                <source src="http://streaming.wrek.org:8000/wrek_live-128kb" type="audio/mpeg"/>
+                <em>Sorry, your browser does not support HTML5 audio.</em>
+            </audio>
+        </div>
+    </div>-->
+    <div class="row">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
     </div>
     <div id="radio_sets" class="row">
-        ^radio_sets^
+        <h1>Mixes</h1>
+        <hr/>
+        <div class="col-md-8 col-md-offset-2">
+            ^radio_sets^
+        </div>
     </div>
+</div>
+<div id="player-ui" class="container">
+    <div class="col-md-2">
+        <img id="album-art" ng-src="{{albumSrc}}"/>
+    </div>
+    <div class="col-md-8" style="text-align: center;">
+        <i id="btn-backward" class="fa fa-step-backward"></i>
+        <i id="btn-playpause" class="fa"
+           ng-class="{'fa-play': !playing, 'fa-pause': playing, 'fa-circle-o-notch fa-spin': loading}"
+           ng-click="playpause()"></i>
+        <i id="btn-forward" class="fa fa-step-forward"></i>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+<div style="display: none;">
+    <audio autoplay>
+        <source src=""/>
+    </audio>
 </div>
 ^infinite_scroll^
 ^angular^

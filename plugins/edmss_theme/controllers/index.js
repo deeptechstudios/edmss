@@ -8,12 +8,23 @@ module.exports = function IndexModule(pb) {
 
 	//dependencies
 	var util          = pb.util;
-	var PluginService = pb.PluginService;
 	var TopMenu       = pb.TopMenuService;
-	var MediaLoader   = pb.MediaLoader;
 
 	function Index() {}
 	util.inherits(Index, pb.BaseController);
+
+    Index.getRoutes = function(cb) {
+		var routes = [
+			{
+				method: 'get',
+				path: '/',
+				auth_required: false,
+				content_type: 'text/html'
+			}
+		];
+		cb(null, routes);
+	};
+
 	/**
 	 * This is the function that will be called by the system's RequestHandler.  It
 	 * will map the incoming route to the ones below and then instantiate this
@@ -78,12 +89,17 @@ module.exports = function IndexModule(pb) {
                         cb(null, angularData);
                     });
 
-                    var now = new Date();
-                    var angularObjects = pb.ClientJs.getAngularObjects({
-                        streaming: ((now.getDay() == 6 && (now.getHours() >= 21)) ||
-                                    (now.getDay() == 0 && (now.getHours() == 0 && now.getMinutes() <= 2)))
+                    self.getPlaylist(function(playlist) {
+                        var angularObjects = pb.ClientJs.getAngularObjects({
+                            streaming: self.isStreaming(),
+                            loading: false,
+                            playing: false,
+                            playlist: playlist,
+                            currTrack: 0,
+                            lastTrack: -1
+                        });
+                        self.ts.registerLocal('angular_objects', new pb.TemplateValue(angularObjects, false));
                     });
-                    self.ts.registerLocal('angular_objects', new pb.TemplateValue(angularObjects, false));
 
                     self.ts.load('index', function (err, template) {
 						if (util.isError(err)) {
@@ -136,17 +152,43 @@ module.exports = function IndexModule(pb) {
         ats.load('elements/mix', callback);
     };
 
-	Index.getRoutes = function(cb) {
-		var routes = [
-			{
-				method: 'get',
-				path: '/',
-				auth_required: false,
-				content_type: 'text/html'
-			}
-		];
-		cb(null, routes);
-	};
+    Index.prototype.getPlaylist = function(cb) {
+        var self = this;
+
+        var playlist = [];
+        var objService = new pb.CustomObjectService();
+        objService.loadTypeByName('Mix', function(err, customType) {
+            objService.findByType(customType, function(err, mixes) {
+                for (var i in mixes) {
+                    playlist.push({
+                        name: mixes[i]['name'],
+                        artist: mixes[i]['Artist'],
+                        src: '',
+                        type: '',
+                        art: 'http://images-mix.netdna-ssl.com/w/120/h/120/q/85/upload/images/profile/475821f6-feb3-43ce-aa08-f50f568167c4.jpg'
+                    })
+                }
+                if (self.isStreaming()) {
+                    playlist.unshift({
+                        name: 'WREK Player',
+                        artist: 'DJ Spurdo',
+                        src: 'http://streaming.wrek.org:8000/wrek_live-128kb',
+                        type: 'audio/mpeg',
+                        art: 'https://upload.wikimedia.org/wikipedia/en/b/b8/WREK_Logo.png'
+                    })
+                }
+                cb(playlist);
+            });
+        });
+    };
+
+    Index.prototype.isStreaming = function() {
+        return true;
+        var now = new Date();
+        return (now.getDay() == 6 && (now.getHours() >= 21)) || (now.getDay() == 0 && (now.getHours() == 0 && now.getMinutes() <= 2));
+    };
+
+
 
 	//exports
 	return Index;
