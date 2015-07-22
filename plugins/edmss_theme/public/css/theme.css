@@ -79,8 +79,9 @@ div.mix div.cover-image-logo {
 div#player-ui {
   position: fixed;
   bottom: 0;
+  padding: 0;
   width: 100%;
-  vertical-align: middle;
+  max-height: 100px;
   color: #c7c7c7;
   background-color: #252525;
 }
@@ -99,9 +100,20 @@ i#btn-backward,
 i#btn-forward {
   font-size: 22pt;
 }
-img#album-art {
-  height: 80px;
-  width: 80px;
+div#track-info {
+  padding: 0;
+}
+div#track-info * {
+  vertical-align: middle;
+}
+img#track-art {
+  height: 100px;
+  width: 100px;
+}
+span#track-name {
+  font-size: 16pt;
+  font-weight: bold;
+  clear: right;
 }
 /* Pencilblue styles (lessified) */
 * {

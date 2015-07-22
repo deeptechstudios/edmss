@@ -33,10 +33,16 @@
     </div>
 </div>
 <div id="player-ui" class="container">
-    <div class="col-md-2">
-        <img id="album-art" ng-src="{{albumSrc}}"/>
+    <div id="track-info" class="col-md-4">
+		<div id="track-art-wrapper">
+			<img id="track-art" ng-src="{{albumSrc}}"/>
+		</div>
+		<div id="track-info-wrapper">
+			<div id="track-name">Test asdf</div>
+			<div id="track-artist">More test</div>
+		</div>
     </div>
-    <div class="col-md-8" style="text-align: center;">
+    <div class="col-md-4" style="text-align: center;">
         <i id="btn-backward" class="fa fa-step-backward"></i>
         <i id="btn-playpause" class="fa"
            ng-class="{'fa-play': !playing, 'fa-pause': playing, 'fa-circle-o-notch fa-spin': loading}"
