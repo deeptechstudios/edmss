@@ -52,7 +52,18 @@
 
         $('audio').bind('pause', function() {
             $scope.playing = false;
-            $scope.$apply();
+            //$scope.$apply();
+        });
+
+        $('#slider').slider({
+            min: 0,
+            max: 100,
+            value: 100,
+            slide: function(ev, ui) {
+                $scope.volume = ui.value / 100.0;
+                $scope.$apply();
+                $('#sound-src').prop('volume', ui.value / 100.0);
+            }
         });
 
         $scope.play();

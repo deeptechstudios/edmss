@@ -96,7 +96,8 @@ module.exports = function IndexModule(pb) {
                             playing: false,
                             playlist: playlist,
                             currTrack: 0,
-                            lastTrack: -1
+                            lastTrack: -1,
+                            volume: 1.0
                         });
                         self.ts.registerLocal('angular_objects', new pb.TemplateValue(angularObjects, false));
                     });
@@ -170,8 +171,8 @@ module.exports = function IndexModule(pb) {
                 }
                 if (self.isStreaming()) {
                     playlist.unshift({
-                        name: 'WREK Player',
-                        artist: 'DJ Spurdo',
+                        name: 'Live from WREK Atlanta',
+                        artist: 'Gabriel & Dresden',
                         src: 'http://streaming.wrek.org:8000/wrek_live-128kb',
                         type: 'audio/mpeg',
                         art: 'https://upload.wikimedia.org/wikipedia/en/b/b8/WREK_Logo.png'

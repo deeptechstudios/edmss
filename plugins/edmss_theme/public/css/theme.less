@@ -120,6 +120,11 @@ div#player-ui {
 
   color: @color_head_fg;
   background-color: @color_head_bg;
+
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 div#player-ui i {
@@ -140,12 +145,35 @@ i#btn-backward, i#btn-forward {
   font-size: 22pt;
 }
 
-div#track-info {
-  padding: 0;
+i#btn-volume {
+  font-size: 32pt;
 }
 
-div#track-info * {
+div#player-left {
+  padding: 0;
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+  -o-user-select: text;
+}
+
+div#player-left span {
+  display: inline-block;
+  position: relative;
+}
+
+div#player-left * {
   vertical-align: middle;
+}
+
+div#player-middle {
+  text-align: center;
+  line-height: 100px;
+}
+
+div#player-right {
+  text-align: right;
+  line-height: 100px;
 }
 
 img#track-art {
@@ -154,21 +182,59 @@ img#track-art {
 }
 
 span#track-name {
-  font-size: 16pt;
+  font-size: 1.5em;
   font-weight: bold;
-  clear: right;
+}
+
+span#track-artist {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+div#volume-wrapper {
+  right: 5%;
+}
+
+div#slider-wrapper {
+  //position: relative;
+  top: 45%;
+  width: 150px;
+}
+
+div#slider {
+  background: @color_body_bg;
+
+  border: none;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+}
+
+span.ui-slider-handle {
+  background: @color_body_fg;
+
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 
 
 /* Pencilblue styles (lessified) */
 
+/*
 *
 {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
 }
+*/
 
 body {
   font-family: 'Roboto', sans-serif;
