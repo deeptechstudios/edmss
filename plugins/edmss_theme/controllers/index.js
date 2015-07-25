@@ -97,7 +97,8 @@ module.exports = function IndexModule(pb) {
                             playlist: playlist,
                             currTrack: 0,
                             lastTrack: -1,
-                            volume: 1.0
+                            volume: 1.0,
+                            muted: false
                         });
                         self.ts.registerLocal('angular_objects', new pb.TemplateValue(angularObjects, false));
                     });

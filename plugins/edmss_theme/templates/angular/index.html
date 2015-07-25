@@ -52,19 +52,28 @@
 
         $('audio').bind('pause', function() {
             $scope.playing = false;
-            //$scope.$apply();
+            //$scope.$apply();  // I don't know why this isn't needed here.. it errors if you uncomment it
+        });
+
+        $('#volume-wrapper').click(function () {
+            $scope.muted = !$scope.muted;
+            $scope.$apply();
+            $('audio').prop('muted', $scope.muted);
         });
 
         $('#slider').slider({
             min: 0,
             max: 100,
             value: 100,
+            range: 'min',
             slide: function(ev, ui) {
                 $scope.volume = ui.value / 100.0;
                 $scope.$apply();
                 $('#sound-src').prop('volume', ui.value / 100.0);
             }
         });
+
+        $('span.ui-slider-handle').removeAttr('tabindex');
 
         $scope.play();
     });

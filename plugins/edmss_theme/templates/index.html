@@ -41,23 +41,26 @@
         </span>
     </div>
     <div id="player-middle" class="col-md-4">
-        <i id="btn-backward" class="fa fa-step-backward"></i>
-        <i id="btn-playpause" class="fa"
-           ng-class="{'fa-play': !playing, 'fa-pause': playing, 'fa-circle-o-notch fa-spin': loading}"
-           ng-click="playpause()"></i>
-        <i id="btn-forward" class="fa fa-step-forward"></i>
+        <div id="backward-wrapper" class="col-md-1 col-md-offset-4">
+            <i id="btn-backward" class="fa fa-step-backward"></i>
+        </div>
+        <div id="playpause-wrapper" class="col-md-2" ng-click="playpause()">
+            <i id="btn-playpause" class="fa"
+               ng-class="{'fa-play': !loading && !playing, 'fa-pause': playing, 'fa-spinner fa-pulse': loading}"></i>
+        </div>
+        <div id="forward-wrapper" class="col-md-1">
+            <i id="btn-forward" class="fa fa-step-forward"></i>
+        </div>
     </div>
     <div id="player-right" class="col-md-4">
-        <div class="col-md-2"></div>
-        <div id="volume-wrapper" class="col-md-2">
+        <div id="volume-wrapper" class="col-md-1">
             <i id="btn-volume" class="fa"
-               ng-class="{'fa-volume-up': volume >= 0.5, 'fa-volume-down': volume < 0.5, 'fa-volume-off': volume == 0}"></i>
+               ng-class="{'fa-volume-off': muted, 'fa-volume-up': !muted && volume >= 0.5, 'fa-volume-down': !muted && volume < 0.5}"></i>
         </div>
-        <div id="slider-wrapper" class="col-md-2">
+        <div id="slider-wrapper" class="col-md-3">
             <div id="slider"></div>
         </div>
-        <div class="col-md-3"></div>
-        <div id="settings-wrapper" class="col-md-4">
+        <div id="settings-wrapper" class="col-md-2 col-md-offset-5">
             <i id="btn-settings" class="fa fa-ellipsis-h"></i>
         </div>
     </div>

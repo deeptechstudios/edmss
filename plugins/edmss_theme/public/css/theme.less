@@ -12,19 +12,19 @@
 
 /* EDMSS styles */
 
-nav#account_nav {
+#account_nav {
   background-color: @color_head_bg;
 }
 
-li.account_button a {
+.account_button a {
   color: @color_acct_btns !important;
 }
 
-li.account_button a:hover {
+.account_button a:hover {
   color: white !important;
 }
 
-div#nav_desktop {
+#nav_desktop {
   background-color: @color_head_bg;
 }
 
@@ -43,13 +43,13 @@ div#nav_desktop {
 }
 
 
-div#radio_sets {
+#radio_sets {
   background-color: @color_body_3;
   color: @color_head_bg;
   text-align: center;
 }
 
-div#player {
+#player {
   background-color: @color_body_2;
   align-content: center;
 }
@@ -57,7 +57,7 @@ div#player {
 
 /* Mixes */
 
-div.mix {
+.mix {
   margin: 5px auto;
   width: 50%;
   height: 200px;
@@ -66,42 +66,42 @@ div.mix {
   overflow: hidden;
 }
 
-div.mix h1 {
+.mix h1 {
   font-size: 1.5em;
 }
 
-div.mix h2 {
+.mix h2 {
   font-size: 1.3em;
 }
 
-div.mix h3 {
+.mix h3 {
   font-size: 1em;
   font-style: italic;
 }
 
-div.mix .col-md-4 {
+.mix .col-md-4 {
   background-color: @color_body_fg;
   height: inherit;
   padding: 0;
 }
 
-div.mix iframe {
+.mix iframe {
   width: 100%;
   height: 100%;
 }
 
-div.mix div.cover-title-background {
+.mix .cover-title-background {
   display: none;
 }
 
-div.mix div.cover-play {
+.mix .cover-play {
   top: 50%;
   left: 50%;
   margin-top: -32px;
   margin-left: -32px;
 }
 
-div.mix div.cover-image-logo {
+.mix .cover-image-logo {
   left: 50%;
   margin-left: -52px;
 }
@@ -110,7 +110,7 @@ div.mix div.cover-image-logo {
 
 /* Player UI */
 
-div#player-ui {
+#player-ui {
   position: fixed;
   bottom: 0;
   padding: 0;
@@ -127,29 +127,28 @@ div#player-ui {
   -o-user-select: none;
 }
 
-div#player-ui i {
-  margin: 0.3em;
+#player-ui i {
   vertical-align: middle;
 }
 
-div#player-ui i:hover {
+#player-ui i:hover {
   cursor: pointer;
   color: white;
 }
 
-i#btn-playpause {
+#btn-playpause {
   font-size: 42pt;
 }
 
-i#btn-backward, i#btn-forward {
+#btn-backward, i#btn-forward {
   font-size: 22pt;
 }
 
-i#btn-volume {
+#btn-volume, i#btn-settings {
   font-size: 32pt;
 }
 
-div#player-left {
+#player-left {
   padding: 0;
   -moz-user-select: text;
   -khtml-user-select: text;
@@ -157,57 +156,64 @@ div#player-left {
   -o-user-select: text;
 }
 
-div#player-left span {
+#player-left span {
   display: inline-block;
   position: relative;
 }
 
-div#player-left * {
+#player-left * {
   vertical-align: middle;
 }
 
-div#player-middle {
+#player-middle {
   text-align: center;
   line-height: 100px;
 }
 
-div#player-right {
+#player-right {
   text-align: right;
   line-height: 100px;
 }
 
-img#track-art {
+#track-art {
   height: 100px;
   width: 100px;
 }
 
-span#track-name {
+#track-name {
   font-size: 1.5em;
   font-weight: bold;
 }
 
-span#track-artist {
+#track-artist {
   font-size: 1.2em;
   font-style: italic;
 }
 
-div#volume-wrapper {
+#volume-wrapper {
   right: 5%;
 }
 
-div#slider-wrapper {
-  //position: relative;
+#slider-wrapper {
+  display: table-cell;
   top: 45%;
   width: 150px;
 }
 
-div#slider {
+#slider {
   background: @color_body_bg;
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 150px;
 
   border: none;
   border-radius: 1em;
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
+}
+
+div.ui-slider-range {
+  background: @color_body_3;
 }
 
 span.ui-slider-handle {
@@ -217,10 +223,7 @@ span.ui-slider-handle {
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
 
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
+  outline-color: transparent;
 }
 
 
