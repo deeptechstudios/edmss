@@ -11,19 +11,6 @@
             </audio>
         </div>
     </div>-->
-    <div class="row">
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-    </div>
     <div id="radio_sets" class="row">
         <h1>Mixes</h1>
         <hr/>
@@ -41,21 +28,21 @@
         </span>
     </div>
     <div id="player-middle" class="col-md-4">
-        <div id="backward-wrapper" class="col-md-1 col-md-offset-4">
+        <div id="backward-wrapper" class="col-md-2 col-md-offset-3">
             <i id="btn-backward" class="fa fa-step-backward"></i>
         </div>
         <div id="playpause-wrapper" class="col-md-2" ng-click="playpause()">
             <i id="btn-playpause" class="fa"
                ng-class="{'fa-play': !loading && !playing, 'fa-pause': playing, 'fa-spinner fa-pulse': loading}"></i>
         </div>
-        <div id="forward-wrapper" class="col-md-1">
+        <div id="forward-wrapper" class="col-md-2">
             <i id="btn-forward" class="fa fa-step-forward"></i>
         </div>
     </div>
     <div id="player-right" class="col-md-4">
         <div id="volume-wrapper" class="col-md-1">
             <i id="btn-volume" class="fa"
-               ng-class="{'fa-volume-off': muted, 'fa-volume-up': !muted && volume >= 0.5, 'fa-volume-down': !muted && volume < 0.5}"></i>
+               ng-class="{'fa-volume-off': muted || volume == 0, 'fa-volume-up': !muted && volume >= 0.5, 'fa-volume-down': !muted && volume < 0.5 && volume > 0.01}"></i>
         </div>
         <div id="slider-wrapper" class="col-md-3">
             <div id="slider"></div>

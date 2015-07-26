@@ -125,6 +125,9 @@ i#btn-settings {
   text-align: center;
   line-height: 100px;
 }
+#player-middle div {
+  text-align: center;
+}
 #player-right {
   text-align: right;
   line-height: 100px;

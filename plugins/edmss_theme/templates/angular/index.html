@@ -3,6 +3,8 @@
     .controller('PencilBlueController', function($scope) {
         ^angular_objects^;
 
+        $scope.oldVolume = 0;
+
         $scope.play = function() {
             var track = $scope.playlist[$scope.currTrack];
             var audio = $('audio');
@@ -56,9 +58,17 @@
         });
 
         $('#volume-wrapper').click(function () {
+            if (!$scope.muted) {
+                $scope.oldVolume = $scope.volume;
+                $scope.volume = 0;
+            } else {
+                $scope.volume = $scope.oldVolume;
+            }
             $scope.muted = !$scope.muted;
             $scope.$apply();
+            console.log($scope.volume);
             $('audio').prop('muted', $scope.muted);
+            $('#slider').slider('value', $scope.volume * 100);
         });
 
         $('#slider').slider({
