@@ -1,0 +1,3 @@
+#!/bin/bash
+mongo pencil_blue --eval "db.dropDatabase()"
+mongorestore $1

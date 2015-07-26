@@ -10,11 +10,12 @@
             var audio = $('audio');
             var audioSrc = $('audio source');
 
+            console.log($scope.playlist);
+
             if ($scope.currTrack != $scope.lastTrack) {
                 audioSrc.attr('src', track.src);
                 audioSrc.attr('type', track.type);
-                //audio.src = track.src;
-                $scope.albumSrc = track.art;
+                $scope.albumSrc = track.artsrc;
             }
 
             $scope.loading = true;

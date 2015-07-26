@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"pencil_blue.unverified_user"},{"v":1,"key":{"last_modified":1},"name":"last_modified_1","ns":"pencil_blue.unverified_user","expireAfterSeconds":2592000}]}

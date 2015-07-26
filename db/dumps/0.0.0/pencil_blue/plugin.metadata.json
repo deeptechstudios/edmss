@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"pencil_blue.plugin"},{"v":1,"key":{"created":1},"name":"created_1","ns":"pencil_blue.plugin"},{"v":1,"unique":true,"key":{"uid":1},"name":"uid_1","ns":"pencil_blue.plugin"}]}

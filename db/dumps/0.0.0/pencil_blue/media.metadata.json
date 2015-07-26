@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"pencil_blue.media"},{"v":1,"key":{"created":1},"name":"created_1","ns":"pencil_blue.media"},{"v":1,"key":{"location":1},"name":"location_1","ns":"pencil_blue.media"},{"v":1,"key":{"name":1},"name":"name_1","ns":"pencil_blue.media"},{"v":1,"key":{"media_type":1},"name":"media_type_1","ns":"pencil_blue.media"}]}

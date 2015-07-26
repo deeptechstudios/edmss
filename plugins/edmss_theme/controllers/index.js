@@ -61,7 +61,7 @@ module.exports = function IndexModule(pb) {
 
 					self.ts.registerLocal('navigation', new pb.TemplateValue(navigation, false));
                     self.ts.registerLocal('account_buttons', new pb.TemplateValue(accountButtons, false));
-                    self.ts.registerLocal('radio_sets', function(flag, cb) {
+                    /*self.ts.registerLocal('radio_sets', function(flag, cb) {
                         var objService = new pb.CustomObjectService();
                         objService.loadTypeByName('Mix', function(err, customType) {
                             objService.findByType(customType, function(err, mixes) {
@@ -79,7 +79,7 @@ module.exports = function IndexModule(pb) {
                                 });
                             });
                         });
-                    });
+                    });*/
 
                     self.ts.registerLocal('angular', function(flag, cb) {
                         var objects = {
@@ -118,6 +118,7 @@ module.exports = function IndexModule(pb) {
 		});
 	};
 
+    /*
     Index.prototype.renderMix = function(mix, index, callback) {
         var self = this;
 
@@ -149,37 +150,58 @@ module.exports = function IndexModule(pb) {
         });
         /*ats.registerLocal('mix_genres', function(flag, cb) {
 
-        });*/
+        });
 
         ats.load('elements/mix', callback);
     };
+    */
 
     Index.prototype.getPlaylist = function(cb) {
         var self = this;
 
         var playlist = [];
         var objService = new pb.CustomObjectService();
-        objService.loadTypeByName('Mix', function(err, customType) {
+        var mediaService = new pb.MediaService();
+
+        objService.loadTypeByName('mix', function(err, customType) {
             objService.findByType(customType, function(err, mixes) {
                 for (var i in mixes) {
-                    playlist.push({
-                        name: mixes[i]['name'],
-                        artist: mixes[i]['Artist'],
-                        src: '',
-                        type: '',
-                        art: 'http://images-mix.netdna-ssl.com/w/120/h/120/q/85/upload/images/profile/475821f6-feb3-43ce-aa08-f50f568167c4.jpg'
-                    })
+                    var mix = mixes[i];
+
+                    mediaService.loadById(mix['art'], function(err, media) {
+                        playlist.push({
+                            name: mix['name'],
+                            artist: mix['artist'],
+                            src: mix['source'],
+                            type: mix['srctype'],
+                            artsrc: media.location
+                        });
+                    });
+
                 }
-                if (self.isStreaming()) {
-                    playlist.unshift({
-                        name: 'Live from WREK Atlanta',
-                        artist: 'Gabriel & Dresden',
-                        src: 'http://streaming.wrek.org:8000/wrek_live-128kb',
-                        type: 'audio/mpeg',
-                        art: 'https://upload.wikimedia.org/wikipedia/en/b/b8/WREK_Logo.png'
-                    })
-                }
-                cb(playlist);
+                var now = new Date();
+                objService.loadTypeByName('show', function(err, showType) {
+                    var where = {
+                        start: { $lte: now },
+                        end: { $gte: now }
+                    };
+                    var options = {};
+                    objService.loadBy(showType[pb.DAO.getIdField()]+'', where, options, function(err, show) {
+                        if (show) {
+                            mediaService.loadById(show['art'], function(err, media) {
+                                playlist.unshift({
+                                    name: 'Live from WREK Atlanta',
+                                    artist: show['artist'] + ' - ' + show['name'],
+                                    src: show['source'],
+                                    type: show['srctype'],
+                                    artsrc: media.location
+                                });
+                                cb(playlist);
+                            });
+                        }
+                        cb(playlist);
+                    });
+                });
             });
         });
     };

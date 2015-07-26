@@ -1,0 +1,3 @@
+Use './recreate dumps/x.x.x' to restore the database dump to your local server.
+Use './merge dumps/x.x.x' to merge NEW items from the database dump.
+Use './save x.x.x' to save a dump to dumps/x.x.x. 
