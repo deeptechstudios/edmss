@@ -86,6 +86,19 @@
 
         $('span.ui-slider-handle').removeAttr('tabindex');
 
+        $('.track').hover(
+           function() {
+
+        }, function() {
+
+        });
+
+        $('.track').click(function() {
+            console.log('asdf');
+            $scope.currTrack = $(this).dataset['track-index'];
+            $scope.play();
+        });
+
         $scope.play();
     });
 </script>

@@ -156,6 +156,11 @@ module.exports = function IndexModule(pb) {
     };
     */
 
+    /**
+     * getPlaylist
+     * //TODO look over this again to figure out how the hell it works
+     * @param cb
+     */
     Index.prototype.getPlaylist = function(cb) {
         var self = this;
 
@@ -164,52 +169,65 @@ module.exports = function IndexModule(pb) {
         var mediaService = new pb.MediaService();
 
         objService.loadTypeByName('mix', function(err, customType) {
-            objService.findByType(customType, function(err, mixes) {
-                for (var i in mixes) {
-                    var mix = mixes[i];
+            objService.findByType(customType, function(err, objects) {
 
-                    mediaService.loadById(mix['art'], function(err, media) {
-                        playlist.push({
-                            name: mix['name'],
-                            artist: mix['artist'],
-                            src: mix['source'],
-                            type: mix['srctype'],
-                            artsrc: media.location
-                        });
-                    });
-
-                }
-                var now = new Date();
-                objService.loadTypeByName('show', function(err, showType) {
-                    var where = {
-                        start: { $lte: now },
-                        end: { $gte: now }
-                    };
-                    var options = {};
-                    objService.loadBy(showType[pb.DAO.getIdField()]+'', where, options, function(err, show) {
-                        if (show) {
-                            mediaService.loadById(show['art'], function(err, media) {
-                                playlist.unshift({
-                                    name: 'Live from WREK Atlanta',
-                                    artist: show['artist'] + ' - ' + show['name'],
-                                    src: show['source'],
-                                    type: show['srctype'],
-                                    artsrc: media.location
-                                });
-                                cb(playlist);
+                var tasks = util.getTasks(objects, function(mixes, i) {
+                    return function(callback) {
+                        mediaService.loadById(mixes[i]['art'], function(err, media) {
+                            playlist.push({
+                                name: mixes[i]['name'],
+                                artist: mixes[i]['artist'],
+                                src: mixes[i]['source'],
+                                type: mixes[i]['srctype'],
+                                artsrc: media.location,
+                                external: mixes[i]['external'],
+                                fa_class: mixes[i]['ext-fa-class']
                             });
-                        }
-                        cb(playlist);
+                            // I find this suspect, but the callback must be made
+                            callback(null, '');
+                        });
+                    };
+                });
+
+                async.parallel(tasks, function(err, results) {
+                    var now = new Date();
+                    objService.loadTypeByName('show', function(err, showType) {
+                        var where = {
+                            start: { $lte: now },
+                            end: { $gte: now }
+                        };
+                        var options = {};
+
+                        objService.loadBy(showType[pb.DAO.getIdField()]+'', where, options, function(err, show) {
+                            if (show) {
+                                mediaService.loadById(show['art'], function(err, media) {
+                                    playlist.unshift({
+                                        name: 'Live from WREK Atlanta',
+                                        artist: show['artist'] + ' - ' + show['name'],
+                                        src: show['source'],
+                                        type: show['srctype'],
+                                        artsrc: media.location,
+                                        external: show['external'],
+                                        fa_class: show['ext-fa-class']
+                                    });
+                                    cb(playlist);
+                                });
+                            }
+                            cb(playlist);
+                        });
+
                     });
                 });
+
             });
         });
     };
 
     Index.prototype.isStreaming = function() {
         return true;
-        var now = new Date();
+        /*var now = new Date();
         return (now.getDay() == 6 && (now.getHours() >= 21)) || (now.getDay() == 0 && (now.getHours() == 0 && now.getMinutes() <= 2));
+        */
     };
 
 

@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic);
 
 @color_head_bg:   #252525;
-@color_head_fg:   #C7C7C7;
+@color_head_fg:   #D9D9D9;
 @color_acct_btns: #CCCCCC;
 
 @color_link:    #01BBFF;
@@ -9,6 +9,9 @@
 @color_body_fg: #D5D5D5;
 @color_body_2:  #D14377;
 @color_body_3:  #24D8B1;
+
+@track_height: 120px;
+@player_height: 100px;
 
 /* EDMSS styles */
 
@@ -42,20 +45,7 @@
   color: white;
 }
 
-
-#radio_sets {
-  background-color: @color_body_3;
-  color: @color_head_bg;
-  text-align: center;
-}
-
-#player {
-  background-color: @color_body_2;
-  align-content: center;
-}
-
-
-/* Mixes */
+/* Old Mixes styles
 
 .mix {
   margin: 5px auto;
@@ -105,7 +95,62 @@
   left: 50%;
   margin-left: -52px;
 }
+*/
 
+/* Playlist */
+
+#playlist {
+  background: @color_head_fg;
+  color: @color_head_bg;
+}
+
+#playlist * {
+  vertical-align: middle;
+}
+
+#playlist span {
+  display: inline-block;
+  position: relative;
+}
+
+.track {
+  height: @track_height;
+  border-bottom: 1px solid @color_head_bg;
+  margin: 0.5em;
+}
+
+.track:first-of-type {
+  border-top: 1px solid @color_head_bg;
+}
+
+.track img {
+  width: @player_height;
+  height: @player_height;
+  margin: 10px;
+}
+
+.track:hover {
+  cursor: pointer;
+}
+
+.track i {
+  vertical-align: middle;
+  font-size: 28pt;
+  color: @color_head_bg;
+}
+
+.track i:hover {
+  cursor: pointer;
+  color: @color_body_bg;
+}
+
+.track .external-wrapper {
+  line-height: @track_height;
+}
+
+.track .btn-external {
+
+}
 
 
 /* Player UI */
@@ -116,7 +161,7 @@
   padding: 0;
 
   width: 100%;
-  max-height: 100px;
+  max-height: @player_height;
 
   color: @color_head_fg;
   background-color: @color_head_bg;
@@ -171,7 +216,7 @@
 
 #player-middle {
   text-align: center;
-  line-height: 100px;
+  line-height: @player_height;
 }
 
 #player-middle div {
@@ -180,20 +225,20 @@
 
 #player-right {
   text-align: right;
-  line-height: 100px;
+  line-height: @player_height;
 }
 
 #track-art {
-  height: 100px;
-  width: 100px;
+  height: @player_height;
+  width: @player_height;
 }
 
-#track-name {
+.track-name {
   font-size: 1.5em;
   font-weight: bold;
 }
 
-#track-artist {
+.track-artist {
   font-size: 1.2em;
   font-style: italic;
 }
@@ -221,11 +266,11 @@
 }
 
 div.ui-slider-range {
-  background: @color_body_3;
+  background: @color_body_fg;
 }
 
 span.ui-slider-handle {
-  background: @color_body_fg;
+  background: @color_head_fg;
 
   border-radius: 1em;
   -webkit-border-radius: 1em;

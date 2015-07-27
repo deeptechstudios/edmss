@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"pencil_blue.comment"},{"v":1,"key":{"article":1},"name":"article_1","ns":"pencil_blue.comment"},{"v":1,"key":{"commenter":1},"name":"commenter_1","ns":"pencil_blue.comment"}]}

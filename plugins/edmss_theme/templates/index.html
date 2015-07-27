@@ -1,19 +1,35 @@
 ^tmp_head^
 <div class="container-fluid">
-    <div id="radio_sets" class="row">
-        <h1>Mixes</h1>
-        <hr/>
-        <div class="col-md-8 col-md-offset-2">
-            <!-- RADIO SETS -->
+    <div id="playlist" class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="track" ng-repeat="track in playlist" data-track-index="$index">
+                <div class="col-md-4">
+                    <img src="{{track.artsrc}}"/>
+                    <span>
+                        <span class="track-name">{{track.name}}</span><br/>
+                        <span class="track-artist">{{track.artist}}</span>
+                    </span>
+                </div>
+                <div class="external-wrapper col-md-2 col-md-offset-6">
+                    <div class="col-md-6">
+                        <i class="btn-trackinfo fa fa-info-circle"></i>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{track.external}}">
+                            <i class="btn-external fa {{track.fa_class}}"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <div id="player-ui" class="container">
     <div id="player-left" class="col-md-4">
-        <img id="track-art" ng-src="{{albumSrc}}"/>
+        <img id="track-art" ng-src="{{playlist[currTrack].artsrc}}"/>
         <span id="track-info">
-            <span id="track-name">{{playlist[currTrack].name}}</span><br/>
-            <span id="track-artist">{{playlist[currTrack].artist}}</span>
+            <span class="track-name">{{playlist[currTrack].name}}</span><br/>
+            <span class="track-artist">{{playlist[currTrack].artist}}</span>
         </span>
     </div>
     <div id="player-middle" class="col-md-4">
