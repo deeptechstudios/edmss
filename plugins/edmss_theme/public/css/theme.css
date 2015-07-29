@@ -106,7 +106,6 @@
 }
 .track i {
   vertical-align: middle;
-  font-size: 28pt;
   color: #252525;
 }
 .track i:hover {
@@ -137,17 +136,6 @@
   cursor: pointer;
   color: white;
 }
-#btn-playpause {
-  font-size: 42pt;
-}
-#btn-backward,
-i#btn-forward {
-  font-size: 22pt;
-}
-#btn-volume,
-i#btn-settings {
-  font-size: 32pt;
-}
 #player-left {
   padding: 0;
   -moz-user-select: text;
@@ -166,8 +154,14 @@ i#btn-settings {
   text-align: center;
   line-height: 100px;
 }
-#player-middle div {
+#playpause-wrapper {
   text-align: center;
+}
+#backward-wrapper {
+  text-align: right;
+}
+#forward-wrapper {
+  text-align: left;
 }
 #player-right {
   text-align: right;
