@@ -13,6 +13,11 @@
 @track_height: 120px;
 @player_height: 100px;
 
+@track_height_sm: 16vw;
+@track_margin_sm: 2vw;
+@image_height_sm: 12vw;
+@player_height_sm: 15vw;
+
 /* EDMSS styles */
 
 #account_nav {
@@ -45,57 +50,6 @@
   color: white;
 }
 
-/* Old Mixes styles
-
-.mix {
-  margin: 5px auto;
-  width: 50%;
-  height: 200px;
-  background-color: @color_body_bg;
-  color: @color_body_fg;
-  overflow: hidden;
-}
-
-.mix h1 {
-  font-size: 1.5em;
-}
-
-.mix h2 {
-  font-size: 1.3em;
-}
-
-.mix h3 {
-  font-size: 1em;
-  font-style: italic;
-}
-
-.mix .col-md-4 {
-  background-color: @color_body_fg;
-  height: inherit;
-  padding: 0;
-}
-
-.mix iframe {
-  width: 100%;
-  height: 100%;
-}
-
-.mix .cover-title-background {
-  display: none;
-}
-
-.mix .cover-play {
-  top: 50%;
-  left: 50%;
-  margin-top: -32px;
-  margin-left: -32px;
-}
-
-.mix .cover-image-logo {
-  left: 50%;
-  margin-left: -52px;
-}
-*/
 
 /* Playlist */
 
@@ -171,11 +125,12 @@
   -o-user-select: none;
 }
 
-#player-ui i {
+#player-ui i, .navbar-header i {
   vertical-align: middle;
+  color: @color_head_fg;
 }
 
-#player-ui i:hover {
+#player-ui i:hover, .navbar-header i:hover {
   cursor: pointer;
   color: white;
 }
@@ -204,6 +159,16 @@
 
 #playpause-wrapper {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  #btn-playpause { margin-left: -0.8vw; }
+}
+@media (max-width: 660px) {
+  #btn-playpause { margin-left: -1.5vw; }
+}
+@media (max-width: 550px) {
+  #btn-playpause { margin-left: -2vw; }
 }
 
 #backward-wrapper {
@@ -241,14 +206,14 @@
 #slider-wrapper {
   display: table-cell;
   top: 45%;
-  width: 150px;
+  //width: 150px;
 }
 
 #slider {
   background: @color_body_bg;
   display: inline-block;
   vertical-align: middle;
-  min-width: 150px;
+  width: 150px;
 
   border: none;
   border-radius: 1em;
@@ -269,6 +234,32 @@ span.ui-slider-handle {
 
   outline-color: transparent;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { font-size: 2vw; }
+  #slider { width: 20vw; }
+  .track {
+    height: @track_height_sm;
+    margin: @track_margin_sm;
+  }
+  #player-ui { max-height: @player_height_sm; } 
+  #player-ui img { 
+    height: @player_height_sm;
+    width: @player_height_sm;
+  }
+  #player-middle, #player-right { line-height: @player_height_sm; }
+  .track img {
+    height: @image_height_sm;
+    width: @image_height_sm;
+  }
+  .track .external-wrapper { line-height: @track_height_sm; }
+  .navbar-header {
+    height: @player_height_sm;
+    line-height: @player_height_sm;
+  }
+}
+
 
 
 

@@ -25,57 +25,6 @@
 .navbar-default .navbar-nav > li > a:hover {
   color: white;
 }
-/* Old Mixes styles
-
-.mix {
-  margin: 5px auto;
-  width: 50%;
-  height: 200px;
-  background-color: @color_body_bg;
-  color: @color_body_fg;
-  overflow: hidden;
-}
-
-.mix h1 {
-  font-size: 1.5em;
-}
-
-.mix h2 {
-  font-size: 1.3em;
-}
-
-.mix h3 {
-  font-size: 1em;
-  font-style: italic;
-}
-
-.mix .col-md-4 {
-  background-color: @color_body_fg;
-  height: inherit;
-  padding: 0;
-}
-
-.mix iframe {
-  width: 100%;
-  height: 100%;
-}
-
-.mix .cover-title-background {
-  display: none;
-}
-
-.mix .cover-play {
-  top: 50%;
-  left: 50%;
-  margin-top: -32px;
-  margin-left: -32px;
-}
-
-.mix .cover-image-logo {
-  left: 50%;
-  margin-left: -52px;
-}
-*/
 /* Playlist */
 #playlist {
   background: #d9d9d9;
@@ -129,10 +78,13 @@
   -webkit-user-select: none;
   -o-user-select: none;
 }
-#player-ui i {
+#player-ui i,
+.navbar-header i {
   vertical-align: middle;
+  color: #d9d9d9;
 }
-#player-ui i:hover {
+#player-ui i:hover,
+.navbar-header i:hover {
   cursor: pointer;
   color: white;
 }
@@ -156,6 +108,21 @@
 }
 #playpause-wrapper {
   text-align: center;
+}
+@media (max-width: 768px) {
+  #btn-playpause {
+    margin-left: -0.8vw;
+  }
+}
+@media (max-width: 660px) {
+  #btn-playpause {
+    margin-left: -1.5vw;
+  }
+}
+@media (max-width: 550px) {
+  #btn-playpause {
+    margin-left: -2vw;
+  }
 }
 #backward-wrapper {
   text-align: right;
@@ -185,13 +152,12 @@
 #slider-wrapper {
   display: table-cell;
   top: 45%;
-  width: 150px;
 }
 #slider {
   background: #555555;
   display: inline-block;
   vertical-align: middle;
-  min-width: 150px;
+  width: 150px;
   border: none;
   border-radius: 1em;
   -webkit-border-radius: 1em;
@@ -206,6 +172,41 @@ span.ui-slider-handle {
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
   outline-color: transparent;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    font-size: 2vw;
+  }
+  #slider {
+    width: 20vw;
+  }
+  .track {
+    height: 16vw;
+    margin: 2vw;
+  }
+  #player-ui {
+    max-height: 15vw;
+  }
+  #player-ui img {
+    height: 15vw;
+    width: 15vw;
+  }
+  #player-middle,
+  #player-right {
+    line-height: 15vw;
+  }
+  .track img {
+    height: 12vw;
+    width: 12vw;
+  }
+  .track .external-wrapper {
+    line-height: 16vw;
+  }
+  .navbar-header {
+    height: 15vw;
+    line-height: 15vw;
+  }
 }
 /* Pencilblue styles (lessified) */
 /*

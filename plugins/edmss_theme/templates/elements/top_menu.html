@@ -1,14 +1,23 @@
 <nav id="account_nav" class="navbar navbar-default" role="navigation" style="margin-bottom: 0">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse_1">
+    <div class="navbar-header container-fluid">
+        <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse_1">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </button>
-        <a id="navbar_brand_mobile" class="navbar-brand" href="^site_root^" style="padding: .4em">
-            <img src="^site_logo^" style="max-height: 32px"></img>
-        </a>
+        </button>-->
+        <div id="mobile-menu-wrapper" class="col-xs-1" ng-click="showMobileMenu()">
+            <i class="fa fa-3x fa-bars"></i>
+        </div>
+        <div class="col-xs-8">
+            <a id="navbar_brand_mobile" href="^site_root^"><!-- style="padding: 1em">
+            <!--<img src="^site_logo^" style="max-height: 32px"></img>-->
+               &nbsp; 
+            </a>
+        </div>
+        <div class="col-xs-3">
+            <div style="color: red; font-size: 3em; vertical-align: middle;" ng-if="streaming">LIVE</div>
+        </div>        
     </div>
 
     <div class="collapse navbar-collapse" id="navbar_collapse_1">
@@ -16,7 +25,7 @@
             ^navigation^
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-cloak>
-            <li style="color: red; font-size: 24pt;" ng-if="streaming">LIVE</li>
+            
             ^account_buttons^
         </ul>
     </div>

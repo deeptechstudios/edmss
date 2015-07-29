@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div id="playlist" class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
-            <div class="track" ng-repeat="track in playlist" data-track-index="$index">
+            <div class="track" ng-repeat="track in playlist" data-track-index="{{$index}}">
                 <div class="col-xs-9 col-sm-8 col-md-8 col-lg-8">
                     <img src="{{track.artsrc}}"/>
                     <span>
@@ -49,10 +49,10 @@
             <i id="btn-volume" class="fa fa-3x"
                ng-class="{'fa-volume-off': muted || volume == 0, 'fa-volume-up': !muted && volume >= 0.5, 'fa-volume-down': !muted && volume < 0.5 && volume > 0.01}"></i>
         </div>
-        <div id="slider-wrapper" class="col-xs-2 col-sm-2 col-md-2 col-lg-3">
+        <div id="slider-wrapper" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
             <div id="slider"></div>
         </div>
-        <div id="settings-wrapper" class="col-xs-1 col-xs-offset-2 col-sm-1 col-sm-offset-3 col-md-1 col-md-offset-3 col-lg-2 col-lg-offset-4">
+        <div id="settings-wrapper" class="col-xs-1 col-xs-offset-4 col-sm-1 col-sm-offset-4 col-md-1 col-md-offset-4 col-lg-2 col-lg-offset-4">
             <i id="btn-settings" class="fa fa-3x fa-ellipsis-h"></i>
         </div>
     </div>
