@@ -1,11 +1,5 @@
 <nav id="account_nav" class="navbar navbar-default" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header container-fluid">
-        <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse_1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>-->
         <div id="mobile-menu-wrapper" class="col-xs-1" ng-click="showMobileMenu()">
             <i class="fa fa-3x fa-bars"></i>
         </div>
@@ -20,15 +14,22 @@
         </div>        
     </div>
 
-    <div class="collapse navbar-collapse" id="navbar_collapse_1">
-        <ul id="nav_items_mobile" class="nav navbar-nav navbar-fixed">
-            ^navigation^
-        </ul>
-        <ul class="nav navbar-nav navbar-right" ng-cloak>
-            
-            ^account_buttons^
-        </ul>
+    <div id="slide-menu" class="container">
+        <div id="slide-menu-top" class="row">
+            <div id="menu-close-wrapper" class="col-xs-2 col-xs-offset-10">
+                <i class="fa fa-3x fa-close"></i>
+            </div>
+            <ul class="nav navbar-nav navbar-right" ng-cloak>
+                ^account_buttons^
+            </ul>
+        </div>
+        <div class="row">
+            <ul id="nav_items_mobile" class="nav navbar-nav navbar-fixed">
+                ^navigation^
+            </ul>
+        </div>
     </div>
+    <div id="slide-menu-outside">&nbsp;</div>
 </nav>
 <div id="nav_desktop" class="row">
     <div class="col-md-8 col-md-offset-2">
